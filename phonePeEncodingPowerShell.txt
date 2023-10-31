@@ -1,5 +1,5 @@
 $payloadHash =  @{
-    "merchantId" = "M1R0EIEZ11H4"
+    "merchantId" = "PGTESTPAYUAT"
     "merchantTransactionId" = "MT7850590068199109"
     "merchantUserId" = "MUID456"
     "amount" = 100
