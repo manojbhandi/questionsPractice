@@ -1,16 +1,16 @@
-$payloadHash = @{
-    >>   "merchantId" = "MERCHANTUAT"
-    >>   "merchantTransactionId" = "MT7850590068199109"
-    >>   "merchantUserId" = "MUID456"
-    >>   "amount" = 100
-    >>   "redirectUrl" = "https://webhook.site/redirect-url"
-    >>   "redirectMode"= "REDIRECT"
-    >>   "callbackUrl" = "https://webhook.site/callback-url"
-    >>   "mobileNumber" = "9999999999"
-    >>   "paymentInstrument" = @{
-    >>     "type" = "PAY_PAGE"
-    >>   }
-    >> }
+$payloadHash =  @{
+    "merchantId" = "M1R0EIEZ11H4"
+    "merchantTransactionId" = "MT7850590068199109"
+    "merchantUserId" = "MUID456"
+    "amount" = 100
+    "redirectUrl" = "https://webhook.site/redirect-url"
+    "redirectMode" = "REDIRECT"
+    "callbackUrl" = "https://webhook.site/callback-url"
+    "mobileNumber" = "9999999999"
+    "paymentInstrument" = @{
+        "type" = "PAY_PAGE"
+    }
+}
 $payload = $payloadHash | ConvertTo-Json
 $bytes_payload = [System.Text.Encoding]::UTF8.GetBytes($payload)
 $encodedPayload = [Convert]::ToBase64String($bytes_payload)
