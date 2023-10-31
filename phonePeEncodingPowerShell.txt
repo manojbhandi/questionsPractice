@@ -1,0 +1,23 @@
+$payloadHash = @{
+    >>   "merchantId" = "MERCHANTUAT"
+    >>   "merchantTransactionId" = "MT7850590068199109"
+    >>   "merchantUserId" = "MUID456"
+    >>   "amount" = 100
+    >>   "redirectUrl" = "https://webhook.site/redirect-url"
+    >>   "redirectMode"= "REDIRECT"
+    >>   "callbackUrl" = "https://webhook.site/callback-url"
+    >>   "mobileNumber" = "9999999999"
+    >>   "paymentInstrument" = @{
+    >>     "type" = "PAY_PAGE"
+    >>   }
+    >> }
+$payload = $payloadHash | ConvertTo-Json
+$bytes_payload = [System.Text.Encoding]::UTF8.GetBytes($payload)
+$encodedPayload = [Convert]::ToBase64String($bytes_payload)
+$saltKey = "1f585903-3d39-4c5b-a0fe-7f73ea4e68f1"
+$endPoint = "/pg/v1/pay"
+$checkSumString = $encodePayload+$nedPoint+$saltKey
+$checkSumBytes = [System.Text.Encoding]::UTF8.GetBytes($checkSumString)
+$hasher = [System.Security.Cryptography.SHA256]::Create()
+$hashedCheckSum = $hasher.ComputeHash($checkSumBytes)
+$chekSumString = [System.BitConverter]::ToString($hashedCheckSum) -replace '_'
